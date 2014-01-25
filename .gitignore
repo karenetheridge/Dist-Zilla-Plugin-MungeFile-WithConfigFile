@@ -1,0 +1,4 @@
+/.build/
+!.gitignore
+/Dist-Zilla-Plugin-MungeFile-WithConfigFile-*/
+/Dist-Zilla-Plugin-MungeFile-WithConfigFile-*.tar.gz
