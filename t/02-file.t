@@ -11,7 +11,7 @@ my $tzil = Builder->from_config(
         add_files => {
             'source/dist.ini' => simple_ini(
                 [ GatherDir => ],
-                [ 'MungeFile::WithConfigFile' => { finder => ':MainModule', configfile => 'config.ini', house => 'maison' } ],
+                [ 'MungeFile::WithConfigFile' => { file => ['lib/Module.pm'], configfile => 'config.ini' } ],
             ),
             'source/config.ini' => <<'CONFIG',
 dog = chien
@@ -26,7 +26,6 @@ my $string = {{
 . join("\n", map { $_ . ' => ' . $config_data->{$_} } sort keys %$config_data)
 . "\n" . 'And that\'s just great!\n"'
 }};
-my ${{ $house }} = 'my castle';
 1;
 MODULE
         },
@@ -47,7 +46,6 @@ bird => oiseau
 cat => chat
 dog => chien
 And that's just great!\n";
-my $maison = 'my castle';
 1;
 NEW_MODULE
     'module content is transformed',
