@@ -197,7 +197,7 @@ I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 
 * L<Dist::Zilla::Plugin::Substitute>
 * L<Dist::Zilla::Plugin::GatherDir::Template>
-* L<Dist::Zilla::Plugin::MungeFile::WithData>
+* L<Dist::Zilla::Plugin::MungeFile::WithDataSection>
 
 =end :list
 
