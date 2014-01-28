@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - add missing test dependency to read config files
 
 0.001     2014-01-27 01:30:05Z
           - Initial release.

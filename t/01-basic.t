@@ -4,6 +4,7 @@ use warnings FATAL => 'all';
 use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::DZil;
+use Config::Tiny;   # to read .ini files
 
 my $tzil = Builder->from_config(
     { dist_root => 't/does_not_exist' },
