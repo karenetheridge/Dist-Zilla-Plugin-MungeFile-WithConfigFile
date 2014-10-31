@@ -2,6 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Plugin::MungeFile::WithConfigFile;
 # ABSTRACT: Modify files in the build, with templates and config data from a file
+# KEYWORDS: plugin file content injection modification template configuration file
 # vim: set ts=8 sw=4 tw=78 et :
 
 use Moose;
