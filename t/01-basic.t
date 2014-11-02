@@ -1,11 +1,14 @@
 use strict;
 use warnings;
 
+use utf8;
 use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::DZil;
 use Config::Tiny;   # to read .ini files
 use Test::Deep;
+
+binmode $_, ':encoding(UTF-8)' foreach *STDOUT, *STDERR, map { Test::Builder->new->$_ } qw(output failure_output);
 
 my $tzil = Builder->from_config(
     { dist_root => 't/does_not_exist' },
@@ -14,9 +17,14 @@ my $tzil = Builder->from_config(
             'source/dist.ini' => simple_ini(
                 [ GatherDir => ],
                 [ MetaConfig => ],
-                [ 'MungeFile::WithConfigFile' => { finder => ':MainModule', configfile => 'config.ini', house => 'maison' } ],
+                [ 'MungeFile::WithConfigFile' => {
+                        finder => ':MainModule',
+                        configfile => 'config.ini',
+                        house => 'château',
+                    } ],
             ),
             'source/config.ini' => <<'CONFIG',
+; Note: sadly, Config::Any does not assume UTF-8 file encoding
 dog = chien
 cat = chat
 bird = oiseau
@@ -50,7 +58,7 @@ bird => oiseau
 cat => chat
 dog => chien
 And that's just great!\n";
-my $maison = 'my castle';
+my $château = 'my castle';
 1;
 NEW_MODULE
     'module content is transformed',
@@ -68,7 +76,7 @@ cmp_deeply(
                             finder => [ ':MainModule' ],
                             files => [ ],
                             configfile => 'config.ini',
-                            house => 'maison',
+                            house => "ch\x{e2}teau",
                         },
                     },
                     name => 'MungeFile::WithConfigFile',
