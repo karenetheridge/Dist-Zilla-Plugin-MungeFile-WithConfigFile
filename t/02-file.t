@@ -5,6 +5,7 @@ use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::DZil;
 use Config::Tiny;   # to read .ini files
+use Test::Deep;
 
 my $tzil = Builder->from_config(
     { dist_root => 't/does_not_exist' },
@@ -12,6 +13,7 @@ my $tzil = Builder->from_config(
         add_files => {
             'source/dist.ini' => simple_ini(
                 [ GatherDir => ],
+                [ MetaConfig => ],
                 [ 'MungeFile::WithConfigFile' => { file => ['lib/Module.pm'], configfile => 'config.ini' } ],
             ),
             'source/config.ini' => <<'CONFIG',
@@ -51,5 +53,28 @@ And that's just great!\n";
 NEW_MODULE
     'module content is transformed',
 );
+
+cmp_deeply(
+    $tzil->distmeta,
+    superhashof({
+        x_Dist_Zilla => superhashof({
+            plugins => supersetof(
+                {
+                    class => 'Dist::Zilla::Plugin::MungeFile::WithConfigFile',
+                    config => {
+                        'Dist::Zilla::Plugin::MungeFile::WithConfigFile' => {
+                            finder => [ ],
+                            files => [ 'lib/Module.pm' ],
+                            configfile => 'config.ini',
+                        },
+                    },
+                    name => 'MungeFile::WithConfigFile',
+                    version => Dist::Zilla::Plugin::MungeFile::WithConfigFile->VERSION,
+                },
+            ),
+        }),
+    }),
+    'distmeta is correct',
+) or diag 'got distmeta: ', explain $tzil->distmeta;
 
 done_testing;
