@@ -117,10 +117,6 @@ And during the build, F<lib/My/Module.pm>:
 
     my $some_string = '{{ expensive_build_time_sub($config_data{some_field}) }}';
     my ${{ $house }} = 'my castle';
-    __DATA__
-    alpha
-    beta
-    gamma
 
 Is transformed to:
 

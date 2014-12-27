@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - some documentation fixes
 
 0.002     2014-01-28 03:41:49Z
           - add missing test dependency to read config files
