@@ -1,5 +1,6 @@
 /.ackrc
 /.build/
-!.gitignore
+!/.gitignore
+/.latest
 /Dist-Zilla-Plugin-MungeFile-WithConfigFile-*/
 /Dist-Zilla-Plugin-MungeFile-WithConfigFile-*.tar.gz
