@@ -1,3 +1,4 @@
+/.ackrc
 /.build/
 !.gitignore
 /Dist-Zilla-Plugin-MungeFile-WithConfigFile-*/
