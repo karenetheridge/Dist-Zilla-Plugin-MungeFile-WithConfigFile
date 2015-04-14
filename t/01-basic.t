@@ -44,6 +44,7 @@ MODULE
     },
 );
 
+$tzil->chrome->logger->set_debug(1);
 $tzil->build;
 
 my $content = $tzil->slurp_file('build/lib/Module.pm');
@@ -87,5 +88,8 @@ cmp_deeply(
     }),
     'distmeta is correct',
 ) or diag 'got distmeta: ', explain $tzil->distmeta;
+
+diag 'got log messages: ', explain $tzil->log_messages
+    if not Test::Builder->new->is_passing;
 
 done_testing;
