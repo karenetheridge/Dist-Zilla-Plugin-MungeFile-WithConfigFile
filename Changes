@@ -1,4 +1,4 @@
-Revision history for {{$dist->name}}
+Revision history for Dist-Zilla-Plugin-MungeFile-WithConfigFile
 
 {{$NEXT}}
           - some documentation fixes
