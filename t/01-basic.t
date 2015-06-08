@@ -6,6 +6,7 @@ use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::DZil;
 use Config::Tiny;   # to read .ini files
+use Path::Tiny;
 use Test::Deep;
 
 binmode $_, ':encoding(UTF-8)' foreach *STDOUT, *STDERR, map { Test::Builder->new->$_ } qw(output failure_output);
@@ -14,7 +15,7 @@ my $tzil = Builder->from_config(
     { dist_root => 'does-not-exist' },
     {
         add_files => {
-            'source/dist.ini' => simple_ini(
+            path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
                 [ MetaConfig => ],
                 [ 'MungeFile::WithConfigFile' => {
