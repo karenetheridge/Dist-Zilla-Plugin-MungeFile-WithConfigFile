@@ -11,7 +11,7 @@ use Test::Deep;
 binmode $_, ':encoding(UTF-8)' foreach *STDOUT, *STDERR, map { Test::Builder->new->$_ } qw(output failure_output);
 
 my $tzil = Builder->from_config(
-    { dist_root => 't/does_not_exist' },
+    { dist_root => 'does-not-exist' },
     {
         add_files => {
             'source/dist.ini' => simple_ini(
