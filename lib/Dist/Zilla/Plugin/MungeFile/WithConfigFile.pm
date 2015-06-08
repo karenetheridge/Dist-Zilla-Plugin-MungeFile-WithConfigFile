@@ -5,6 +5,8 @@ package Dist::Zilla::Plugin::MungeFile::WithConfigFile;
 # KEYWORDS: plugin file content injection modification template configuration file
 # vim: set ts=8 sw=4 tw=78 et :
 
+our $VERSION = '0.003';
+
 use Moose;
 with (
     'MooseX::SimpleConfig',
