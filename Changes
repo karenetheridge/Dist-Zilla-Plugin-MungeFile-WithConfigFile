@@ -3,6 +3,7 @@ Revision history for Dist-Zilla-Plugin-MungeFile-WithConfigFile
 {{$NEXT}}
           - some documentation fixes
           - documented the limitations with respect to file decodings
+          - updated some bits of the distribution packaging
 
 0.002     2014-01-28 03:41:49Z
           - add missing test dependency to read config files
