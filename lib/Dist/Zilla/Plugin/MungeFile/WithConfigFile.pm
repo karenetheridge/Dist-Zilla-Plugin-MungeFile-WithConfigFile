@@ -178,6 +178,13 @@ B<At least one of the C<finder> or C<file> options is required.>
 
 All other keys/values provided will be passed to the template as is.
 
+=head1 CAVEATS
+
+Presently, the config file is not read with any sort of file decoding (e.g.
+UTF-8), so any extracted strings should be appropriately decoded first. This
+is an issue that needs to be resolved in L<Config::Any> (perhaps by having the
+caller, in our case L<MooseX::SimpleConfig>, to pass the desired decoding).
+
 =head1 SUPPORT
 
 =for stopwords irc
