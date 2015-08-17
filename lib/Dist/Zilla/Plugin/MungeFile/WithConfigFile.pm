@@ -26,7 +26,7 @@ has files => (
     lazy => 1,
     default => sub { [] },
     traits => ['Array'],
-    handles => { files => 'elements' },
+    handles => { files => 'sort' },
 );
 
 has configfile => (
