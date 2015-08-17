@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-MungeFile-WithConfigFile
 
 {{$NEXT}}
+          - split off much of this distribution into
+            Dist::Zilla::Plugin::MungeFile, for greater visibility
 
 0.003     2015-08-18 02:17:09Z
           - some documentation fixes

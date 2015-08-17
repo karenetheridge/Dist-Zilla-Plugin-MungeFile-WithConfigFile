@@ -64,9 +64,12 @@ cmp_deeply(
                 {
                     class => 'Dist::Zilla::Plugin::MungeFile::WithConfigFile',
                     config => {
-                        'Dist::Zilla::Plugin::MungeFile::WithConfigFile' => {
+                        'Dist::Zilla::Plugin::MungeFile' => {
                             finder => [ ],
                             files => [ 'lib/Module.pm' ],
+                            version => Dist::Zilla::Plugin::MungeFile->VERSION,
+                        },
+                        'Dist::Zilla::Plugin::MungeFile::WithConfigFile' => {
                             configfile => 'config.ini',
                         },
                     },

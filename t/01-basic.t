@@ -74,11 +74,14 @@ cmp_deeply(
                 {
                     class => 'Dist::Zilla::Plugin::MungeFile::WithConfigFile',
                     config => {
-                        'Dist::Zilla::Plugin::MungeFile::WithConfigFile' => {
+                        'Dist::Zilla::Plugin::MungeFile' => {
                             finder => [ ':MainModule' ],
                             files => [ ],
-                            configfile => 'config.ini',
                             house => "ch\x{e2}teau",
+                            version => Dist::Zilla::Plugin::MungeFile->VERSION,
+                        },
+                        'Dist::Zilla::Plugin::MungeFile::WithConfigFile' => {
+                            configfile => 'config.ini',
                         },
                     },
                     name => 'MungeFile::WithConfigFile',

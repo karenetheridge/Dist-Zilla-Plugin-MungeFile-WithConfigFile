@@ -8,26 +8,9 @@ package Dist::Zilla::Plugin::MungeFile::WithConfigFile;
 our $VERSION = '0.004';
 
 use Moose;
-with (
-    'MooseX::SimpleConfig',
-    'Dist::Zilla::Role::FileMunger',
-    'Dist::Zilla::Role::TextTemplate',
-    'Dist::Zilla::Role::FileFinderUser' => { default_finders => [ ] },
-);
-use MooseX::SlurpyConstructor 1.2;
-use List::Util 'first';
+extends 'Dist::Zilla::Plugin::MungeFile';
+with 'MooseX::SimpleConfig';
 use namespace::autoclean;
-
-sub mvp_multivalue_args { qw(files) }
-sub mvp_aliases { { file => 'files' } }
-
-has files => (
-    isa  => 'ArrayRef[Str]',
-    lazy => 1,
-    default => sub { [] },
-    traits => ['Array'],
-    handles => { files => 'sort' },
-);
 
 has configfile => (
     is => 'ro', isa => 'Str',
@@ -43,16 +26,6 @@ has _config_data => (
     },
 );
 
-has _extra_args => (
-    isa => 'HashRef[Str]',
-    init_arg => undef,
-    lazy => 1,
-    default => sub { {} },
-    traits => ['Hash'],
-    handles => { _extra_args => 'elements' },
-    slurpy => 1,
-);
-
 around dump_config => sub
 {
     my $orig = shift;
@@ -61,44 +34,20 @@ around dump_config => sub
     my $config = $self->$orig;
 
     $config->{'' . __PACKAGE__} = {
-        finder => $self->finder,
-        files => [ $self->files ],
         configfile => $self->configfile,
-        $self->_extra_args,
+        blessed($self) ne __PACKAGE__ ? ( version => $VERSION ) : (),
     };
 
     return $config;
 };
 
-sub munge_files
-{
-    my $self = shift;
-
-    my @files = map {
-        my $filename = $_;
-        my $file = first { $_->name eq $filename } @{ $self->zilla->files };
-        defined $file ? $file : ()
-    } $self->files;
-
-    $self->munge_file($_) for @files, @{ $self->found_files };
-}
-
 sub munge_file
 {
     my ($self, $file) = @_;
 
-    $self->log_debug([ 'updating contents of %s in memory', $file->name ]);
-
-    $file->content(
-        $self->fill_in_string(
-            $file->content,
-            {
-                $self->_extra_args,     # must be first
-                dist => \($self->zilla),
-                plugin => \$self,
-                config_data => \($self->_config_data),
-            },
-        )
+    $self->next::method(
+        $file,
+        { config_data => \($self->_config_data) },
     );
 }
 
@@ -198,6 +147,7 @@ I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 =for :list
 * L<Dist::Zilla::Plugin::Substitute>
 * L<Dist::Zilla::Plugin::GatherDir::Template>
+* L<Dist::Zilla::Plugin::MungeFile>
 * L<Dist::Zilla::Plugin::MungeFile::WithDataSection>
 
 =cut
