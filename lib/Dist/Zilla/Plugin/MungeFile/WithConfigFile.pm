@@ -3,7 +3,7 @@ use warnings;
 package Dist::Zilla::Plugin::MungeFile::WithConfigFile;
 # ABSTRACT: Modify files in the build, with templates and config data from a file
 # KEYWORDS: plugin file content injection modification template configuration file
-# vim: set ts=8 sts=4 sw=4 tw=78 et :
+# vim: set ts=8 sts=4 sw=4 tw=115 et :
 
 our $VERSION = '0.003';
 
