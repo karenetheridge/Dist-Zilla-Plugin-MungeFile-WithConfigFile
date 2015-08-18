@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MungeFile-WithConfigFile
 
+{{$NEXT}}
+
 0.003     2015-08-18 02:17:09Z
           - some documentation fixes
           - documented the limitations with respect to file decodings
