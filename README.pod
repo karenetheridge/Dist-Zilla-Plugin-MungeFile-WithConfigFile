@@ -8,7 +8,7 @@ Dist::Zilla::Plugin::MungeFile::WithConfigFile - Modify files in the build, with
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -107,6 +107,10 @@ L<Dist::Zilla::Plugin::Substitute>
 =item *
 
 L<Dist::Zilla::Plugin::GatherDir::Template>
+
+=item *
+
+L<Dist::Zilla::Plugin::MungeFile>
 
 =item *
 
