@@ -134,14 +134,6 @@ UTF-8), so any extracted strings should be appropriately decoded first. This
 is an issue that needs to be resolved in L<Config::Any> (perhaps by having the
 caller, in our case L<MooseX::SimpleConfig>, to pass the desired decoding).
 
-=head1 SUPPORT
-
-=for stopwords irc
-
-Bugs may be submitted through L<the RT bug tracker|https://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-MungeFile-WithConfigFile>
-(or L<bug-Dist-Zilla-Plugin-MungeFile-WithConfigFile@rt.cpan.org|mailto:bug-Dist-Zilla-Plugin-MungeFile-WithConfigFile@rt.cpan.org>).
-I am also usually active on irc, as 'ether' at C<irc.perl.org>.
-
 =head1 SEE ALSO
 
 =for :list
