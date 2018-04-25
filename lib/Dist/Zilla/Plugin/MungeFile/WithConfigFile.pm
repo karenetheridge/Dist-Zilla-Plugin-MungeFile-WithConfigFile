@@ -5,7 +5,7 @@ package Dist::Zilla::Plugin::MungeFile::WithConfigFile;
 # ABSTRACT: Modify files in the build, with templates and config data from a file
 # KEYWORDS: plugin file content injection modification template configuration file
 
-our $VERSION = '0.005';
+our $VERSION = '0.006';
 
 use Moose;
 extends 'Dist::Zilla::Plugin::MungeFile';
