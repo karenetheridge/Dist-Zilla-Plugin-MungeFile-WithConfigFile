@@ -10,6 +10,8 @@ our $VERSION = '0.005';
 use Moose;
 extends 'Dist::Zilla::Plugin::MungeFile';
 with 'MooseX::SimpleConfig';
+
+use Path::Tiny;
 use namespace::autoclean;
 
 has configfile => (
@@ -22,7 +24,7 @@ has _config_data => (
     lazy => 1,
     default => sub {
         my $self = shift;
-        $self->get_config_from_file($self->configfile);
+        $self->get_config_from_file(path($self->configfile)->absolute($self->zilla->root));
     },
 );
 
