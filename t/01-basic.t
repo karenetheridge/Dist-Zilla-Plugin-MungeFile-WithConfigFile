@@ -9,7 +9,9 @@ use Config::Tiny;   # to read .ini files
 use Path::Tiny;
 use Test::Deep;
 
-binmode $_, ':encoding(UTF-8)' foreach *STDOUT, *STDERR, map { Test::Builder->new->$_ } qw(output failure_output);
+binmode Test::More->builder->$_, ':encoding(UTF-8)' foreach qw(output failure_output todo_output);
+binmode STDOUT, ':encoding(UTF-8)';
+binmode STDERR, ':encoding(UTF-8)';
 
 my $tzil = Builder->from_config(
     { dist_root => 'does-not-exist' },
