@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 
+use open ':std', ':encoding(UTF-8)'; # force stdin, stdout, stderr into utf8
 use utf8;
 use Test::More 0.88;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
@@ -8,10 +9,6 @@ use Test::DZil;
 use Config::Tiny;   # to read .ini files
 use Path::Tiny;
 use Test::Deep;
-
-binmode Test::More->builder->$_, ':encoding(UTF-8)' foreach qw(output failure_output todo_output);
-binmode STDOUT, ':encoding(UTF-8)';
-binmode STDERR, ':encoding(UTF-8)';
 
 my $tzil = Builder->from_config(
     { dist_root => 'does-not-exist' },
