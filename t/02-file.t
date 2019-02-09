@@ -27,7 +27,7 @@ package Module;
 
 my $string = {{
 '"our config data is:' . "\n"
-. join("\n", map { $_ . ' => ' . $config_data->{$_} } sort keys %$config_data)
+. join("\n", map +($_ . ' => ' . $config_data->{$_}), sort keys %$config_data)
 . "\n" . 'And that\'s just great!\n"'
 }};
 1;
